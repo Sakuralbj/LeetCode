@@ -30,26 +30,36 @@ public:
         int j=i+1,k=nums.size()-1;
         while (j<k)
         {
+            if ((j>i+1)&&(j<nums.size()-1)&&(nums[j]==nums[j-1]))
+            {
+                j++;
+                continue;
+            }
+            if ((k>1)&&(k<nums.size()-1))
+            {
+                if (nums[k]==nums[k+1])
+                {
+                     k--;
+                continue;
+                }
+                
+               
+            }
+            
             if (nums[j]+nums[k]>-nums[i])
             {
                 k--;
-                if (nums[k]==nums[k+1])
-                {
-                    continue;
-                }
+                
                 
                 
             }
             else if  (nums[j]+nums[k]==-nums[i]){
-                if (nums[k]==nums[k+1])
-                {
-                    continue;
-                }
+                
                 vector<int> temp;
                 temp.push_back(nums[i]);
                 temp.push_back(nums[j]);
                 temp.push_back(nums[k]);
-                
+                j++;
                 k--;
                 result.push_back(temp);
                 
@@ -57,9 +67,7 @@ public:
             else if (nums[j]+nums[k]<-nums[i])
             {
                 j++;
-                if(nums[j]==nums[j-1]){
-                continue;
-                }
+                
             }
     }
     }
