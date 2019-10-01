@@ -19,7 +19,7 @@ public:
             return;
         }
 
-        for (int i = start; i < candidates.size() && candidates[start] <= target; ++i) {
+        for (int i = start; i < candidates.size() && candidates[i] <= target; ++i) {
 
             path.push_back(candidates[i]);
             DFS(i, target - candidates[i]);
