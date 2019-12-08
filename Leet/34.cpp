@@ -15,7 +15,7 @@ public:
         int l,r,mid;
 
         while (left<=right){
-             mid=(left+right)/2;
+             mid=(left+right)/2;//mid=left+(right-left)/2
             if(nums[mid]==target){
                 l=mid;
                 r=mid;
