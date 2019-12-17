@@ -1,6 +1,7 @@
 #include<iostream>
 #include<vector>
 using namespace std;
+//时间复杂度和空间复杂度都为o(n),空间复杂度不为常数。
 class Solution {
 public:
     int firstMissingPositive(vector<int>& nums) {
