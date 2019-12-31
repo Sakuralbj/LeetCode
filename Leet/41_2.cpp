@@ -19,8 +19,7 @@ public:
             
         }
         for (int i = 0; i < x; i++)
-        {   cout<<"i="<<i<<endl;
-            cout<<"x"<<nums[i]<<endl;
+        {   
            if(nums[i]!=i+1){
                return i+1;
            }
@@ -45,6 +44,6 @@ int main(){
     s.push_back(4);
     s.push_back(-1);
     s.push_back(1);
-    cout<<"result"<<s1.firstMissingPositive(s);
+    cout<<s1.firstMissingPositive(s);
 
 }
