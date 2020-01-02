@@ -43,7 +43,7 @@ int main(){
     s.push_back(3);
     s.push_back(4);
     s.push_back(-1);
-    s.push_back(1);
+    s.pushback(1);
     cout<<s1.firstMissingPositive(s);
 
 }
