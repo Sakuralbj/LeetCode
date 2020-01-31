@@ -8,7 +8,7 @@
             "type": "shell",
             "command": "clang++",
             "args": [
-                "Leet/1.cpp"
+                "Leet/62.Unique Paths.cpp"
             ],
             "group": {
                 "kind":"build",
