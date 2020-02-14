@@ -10,26 +10,29 @@
 using namespace std;
 class Solution {
 public:
-    vector<int>ans;
     vector<int> grayCode(int n) {
-        vector<int>tmp;
-        grayCodehelp
+        vector<int>ans;
+        ans.push_back(0);
+        int head=1;
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = ans.size()-1; j>=0; j--)
+            {
+                ans.push_back(ans[j]+head);
+                
+            }
+            head=head<<1;
+            
+        }
+        return ans;
+        
+        
+
+        
 
         
     }
-    void grayCodehelp(int n,int index,vector<int>tmp){
-        if(n==index){
-            int sum=0;
-            int binary=1;
-            for (int i = 0; i < tmp.size(); i++)
-            {
-                sum+=binary*tmp[i];
-                binary*=2;
-            }
-            ans.push_back(sum);
-            
-        }
-    }
+   
 };
 // @lc code=end
 
