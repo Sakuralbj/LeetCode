@@ -17,6 +17,23 @@
 class Solution {
 public:
     bool isBalanced(TreeNode* root) {
+        return balancehelp(root)!=-1;
+
+        
+    }
+    int balancehelp(TreeNode* root){
+        if(root==NULL){
+            return 0;
+        }
+        int left=balancehelp(root->left);
+        if(left==-1){
+            return -1;
+        }
+        int right=balancehelp(root->right);
+        if(right==-1){
+            return -1;
+        }
+        return abs(left-right)<=1?max(left,right)+1:-1;
         
     }
 };
