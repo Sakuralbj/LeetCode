@@ -19,22 +19,20 @@ public:
             return triangle[0][0];
         }
         vector<int>dp;
-        dp.push_back(triangle[0][0]);
-        for (int i = 1; i < len; i++)
-        {   dp.push_back(dp[i-1]+triangle[i][i]);
-            for (int j = i-1; j>0; j--)
-            {
-               dp[j]=min(dp[j],dp[j-1])+triangle[i][j];
-            }
-            dp[0]=dp[0]+triangle[i][0];
-            
+        for(int i=0;i<len;i++){
+            dp.push_back(triangle[len-1][i]);
         }
-        int result=INT32_MAX;
-        for (int i = 0; i < len; i++)
+        for (int i = len-2; i >= 0; i--)
         {
-            result=min(result,dp[i]);
+           for (int j = 0; j <=i; j++)
+           {
+               dp[j]=min(dp[j],dp[j+1])+triangle[i][j];
+           }
+           
         }
-        return result;
+        return dp[0];
+        
+       
         
         
         
