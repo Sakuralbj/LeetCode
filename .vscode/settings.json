@@ -4,6 +4,7 @@
         "__mutex_base": "cpp",
         "memory": "cpp",
         "iosfwd": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "vector": "cpp"
     }
 }
