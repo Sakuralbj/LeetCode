@@ -1,0 +1,39 @@
+/*
+// Definition for a Node.
+class Node {
+public:
+    int val;
+    Node* next;
+    Node* random;
+    
+    Node(int _val) {
+        val = _val;
+        next = NULL;
+        random = NULL;
+    }
+};
+*/
+class Solution {
+private:
+    map<Node*,Node*>mp;
+public:
+    Node* copyRandomList(Node* head) {
+        if(head==NULL){
+            return NULL;
+        }
+
+        if(mp.count(head)==1){
+            return mp[head];
+        }
+
+        Node* headnode=new Node(head->val);
+        mp[head]=headnode;
+        headnode->next=copyRandomList(head->next);
+        headnode->random=copyRandomList(head->random);
+        return headnode;
+
+
+
+        
+    }
+};

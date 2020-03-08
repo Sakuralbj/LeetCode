@@ -70,3 +70,42 @@
     };
 // @lc code=end
 
+递归:
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        int count=0;
+        ListNode* tmp=head;
+        while(tmp!=NULL){
+            count++;
+            tmp=tmp->next;
+        }
+        return reversehelp(head,count,k);
+
+    }
+    ListNode* reversehelp(ListNode* head,int len,int k){
+        if(len<k){
+            return head;
+        }
+        ListNode* dummy=new ListNode(-1);
+        ListNode  *tmp,*curr=head;
+        ListNode* start=head;
+        for(int i=0;i<k;i++){
+            tmp=curr->next;
+            curr->next=dummy->next;
+            dummy->next=curr;
+            curr=tmp;
+        }
+        start->next=reversehelp(tmp,len-k,  k);
+        return dummy->next;
+        
+    }
+};

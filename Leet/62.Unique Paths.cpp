@@ -5,7 +5,7 @@ class Solution {
 public:
     int uniquePaths(int m, int n) {
     
-        vector<vector<int>> x(m, vector<int>(n, 1)); 
+        vector<vector<int> > x(m, vector<int>(n, 1)); 
         if(m==1||n==1){
             return 1;
         }
