@@ -26,3 +26,32 @@ public:
         }
 };
 // @lc code=end
+class Solution {
+public:
+    bool canJump(vector<int>& nums) {
+        int len=nums.size();
+        int end=min(nums[0],len-1);
+        int i=0;
+        int nextstep=0;
+        while(true){
+            while(i<=end){
+            nextstep=max(nextstep,i+nums[i]);
+            i++;
+            }
+            if(nextstep>=nums.size()-1){
+                return true;
+            }
+            i=end+1;
+            end=nextstep;
+            if(i>end){
+                break;
+            }
+            
+            
+
+        }
+        return false;
+
+
+    }
+};

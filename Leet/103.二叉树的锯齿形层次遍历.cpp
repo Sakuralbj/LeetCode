@@ -31,7 +31,7 @@ public:
         {   int l=q.size();
             vector<int>tmp;
             for (int i = 0; i < l; i++)
-            {
+            {   
                 TreeNode* t=q.front();
                 tmp.push_back(t->val);
                 q.pop();

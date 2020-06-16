@@ -14,63 +14,54 @@ using namespace std;
 class Solution {
 public:
     vector<int> findSubstring(string s, vector<string>& words) {
+        map<string,int>mpword;
         vector<int>ans;
         if(words.size()==0){
             return ans;
         }
-        int oneword=words[0].size();
-        int wholeword=words.size()*oneword;
         
-        map<string,int>mpword;
-
-        for (int i = 0; i < words.size();i++)
-        {   if(mpword.count(words[i])==0){
-            mpword[words[i]]=1;}else
-            {
-                mpword[words[i]]++;
-            }
-            
+        
+        for(auto it:words){
+            mpword[it]++;
         }
-        for (int i = 0; i < oneword; i++)
-        {
-            int left=i,right=i,count=0;
+        int len=s.size();
+        int wordsize=words[0].size();
+        for(int i=0;i<wordsize;i++){
+            int count=0;
             map<string,int>mp;
-            while (right+oneword<=s.size())
-            {   string tmp=s.substr(right,oneword);
-                
-                right=right+oneword;
-                if(mpword.count(tmp)==0){
-                    left=right;
-                    count=0;
-                    mp.clear();
-                    continue;
-                }
-                if(mp.count(tmp)==0){
-                    mp[tmp]=1;
-                }else
-                {
-                    mp[tmp]++;
-                }
-                count++;
-                while (mpword[tmp]<mp[tmp])
-                {   string tmp1=s.substr(left,oneword);
-                    left=left+oneword;
-                    mp[tmp1]--;
-                    count--;
-                    
-                }
-                if(count==words.size()){
-                    ans.push_back(left);
-                }
-                
+            int left=i,right=i;
+            while(right+words[0].size()<=s.size()){
+            string tmp=s.substr(right,wordsize);
+            right=right+wordsize;
+            if(mpword.count(tmp)==0){
+                left=right;
+                count=0;
+                mp.clear();
+                continue;
                 
             }
-        }
-            return ans;
+            mp[tmp]++;
+            count++;
+           
+            while(mp[tmp]>mpword[tmp]){
+                string lefttmp=s.substr(left,wordsize);
+                mp[lefttmp]--;
+                left=left+wordsize;
+                count--;
+                
+
+            }
             
-        
-        
-        
+            if(count==words.size()){
+                ans.push_back(left);
+            }
+
+
+            
+        }
+
+    }
+    return ans;
     }
 };
 // @lc code=end

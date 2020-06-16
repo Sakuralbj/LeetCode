@@ -1,81 +1,44 @@
-/*
- * @lc app=leetcode.cn id=60 lang=cpp
- *
- * [60] 第k个排列
- */
-
-// @lc code=start
-#include<iostream>
-#include<vector>
-#include<memory.h>
-using namespace std;
 class Solution {
-    int num=0;
-    string result="";
+private:
+    int n;
+    int k;
+    string ans;
 public:
     string getPermutation(int n, int k) {
-    bool visited[10];    
-    memset(visited,false,sizeof(visited));
-    string tmp="";
-    permutehelp(n,tmp,visited, k);
-    return result;
-        
-    }
-
-    int factorial(int n){
-        int ans=1;
-        for (int i = 1; i <= n; i++)
-        {
-            ans=ans*i;
+        string tmp;
+        this->n=n;
+        this->k=k;
+        vector<int>factory(n,1);
+        vector<bool>visit(n+1,false);
+        for(int i=2;i<n;i++){
+            factory[i]=i*factory[i-1];
         }
+        gethelp(0,k,tmp,factory,visit);
         return ans;
-        
     }
-
-    void permutehelp(int n,string tmp,bool visited[],int k){
-        if(tmp.size()==n){
-            result=tmp;
+    void gethelp(int index,int k,string tmp,vector<int>factory,vector<bool>visit){
+        if(index==n){
+            ans=tmp;
             return;
         }
-        
-        int divided=factorial(n-tmp.size()-1);
-        int index=k/divided;
-        int nextk=k%divided;
-        if(nextk==0){
-            k=k-divided*(index-1);
-        }else
-        {
-            k=k-divided*(index);
-            index=index+1;
-        }
-        int x=0;
-        for ( int i = 1; i <= n; i++)
-        {
-            if(visited[i]==true){
+        for(int i=1;i<=n;i++){
+            if(visit[i]){
                 continue;
             }
-            x++;
-            if(x==index){
-                visited[i]=true;
-                x=i;
-                break;
+            int num=factory[n-tmp.size()-1];
+            if(num<k){
+                k=k-num;
+                continue;
+            }else{
+            tmp=tmp+char(i+'0');
+            visit[i]=true;
+            gethelp(index+1,k,tmp,factory,visit);
+            break;
             }
         }
-        tmp=tmp+char(x+'0');
-        permutehelp(n,tmp,visited,k);
         return;
         
     }
-        
-        
-        
-        
-        
-            
-            
-        
-        
-    
 };
-// @lc code=end
-
+        
+         

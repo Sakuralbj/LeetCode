@@ -1,10 +1,3 @@
-/*
- * @lc app=leetcode.cn id=61 lang=cpp
- *
- * [61] 旋转链表
- */
-
-// @lc code=start
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -13,52 +6,40 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
-#include<iostream>
-using namespace std;
 class Solution {
 public:
     ListNode* rotateRight(ListNode* head, int k) {
-         if(head==NULL){
-            return head;
-        }
-        ListNode* p=head;
-        ListNode* ans;
-        int size=1;
-        while (p->next!=NULL)
-        {
-           p=p->next;
-           size++;
-        }
-       
-        if(k%size==0){
-            return head;
-        }
-        k=k-k/size*size;
         ListNode* cur=head;
-        ListNode* ne=head;
-
-        while (k>=0)
-        {   
-            ne=ne->next;
-            k--;
+        int count=0;
+        if(head==nullptr||head->next==NULL){
+            return head;
         }
-        while (ne!=NULL)
-        {
-            ne=ne->next;
+        while(cur->next!=nullptr){
             cur=cur->next;
+         
+            count++;
         }
-        ans=cur->next;
-        p->next=head;
+        count++;
         
+        k=k%count;
+        if(k==0){
+            return head;
+        }
+        cur->next=head;
+        
+        
+        int len=count-k-1;
+        cur=head;
+        while(len>0){
+            cur=cur->next;
+            len--;
+        }
+        ListNode* tmp=cur->next;
         cur->next=NULL;
-        return ans;
-
-        
+        return tmp;
         
 
-        
-        
+
+
     }
 };
-// @lc code=end
-
