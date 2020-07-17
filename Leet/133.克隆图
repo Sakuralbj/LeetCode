@@ -1,0 +1,50 @@
+##BFS
+class Solution {
+public:
+    Node* cloneGraph(Node* node) {
+        if(node==NULL){
+            return NULL;
+        }
+        queue<Node*>qt;
+        map<Node*,Node*>mp;
+        qt.push(node);
+        Node* tmp=new Node(node->val);
+        mp[node]=tmp;
+        while(!qt.empty()){
+            Node* top =qt.front();
+            for(int i=0;i<top->neighbors.size();i++){
+                if(mp.count(top->neighbors[i])==0){
+                    mp[top->neighbors[i]]=new Node(top->neighbors[i]->val);
+                    qt.push(top->neighbors[i]);
+                }
+                mp[top]->neighbors.push_back(mp[top->neighbors[i]]);
+            }
+            qt.pop();
+        }
+        return mp[node];
+    }
+
+    ##DFS
+    class Solution {
+    map<Node*,Node*>mp;
+public:
+    Node* cloneGraph(Node* node) {
+        if(node==NULL){
+            return NULL;
+        }
+        mp[node]=new Node(node->val);
+        DFS(node);
+        return mp[node];
+    }
+    void DFS(Node* node){
+        for(int i=0;i<node->neighbors.size();i++){
+            if(mp.count(node->neighbors[i])==0){
+                
+                mp[node->neighbors[i]]=new Node(node->neighbors[i]->val);
+                DFS(node->neighbors[i]);
+            }
+            mp[node]->neighbors.push_back(mp[node->neighbors[i]]);
+
+        }
+    }
+};

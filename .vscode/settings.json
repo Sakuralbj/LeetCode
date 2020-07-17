@@ -5,6 +5,15 @@
         "memory": "cpp",
         "iosfwd": "cpp",
         "algorithm": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "__hash_table": "cpp",
+        "__tree": "cpp",
+        "deque": "cpp",
+        "map": "cpp",
+        "set": "cpp",
+        "string": "cpp",
+        "unordered_map": "cpp",
+        "*.tcc": "cpp",
+        "hashtable": "cpp"
     }
 }

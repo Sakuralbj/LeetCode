@@ -21,7 +21,7 @@ public:
                     dp[i+1][j+1]=false;
                 }else{
                     if(p[j-1]==s[i]||p[j-1]=='.'){
-                        dp[i+1][j+1]=dp[i+1][j-1]||dp[i][j]||dp[i][j+1];
+                        dp[i+1][j+1]=dp[i+1][j-1]||dp[i][j+1];
                     }else{
                         dp[i+1][j+1]=dp[i+1][j-1];
                     }
