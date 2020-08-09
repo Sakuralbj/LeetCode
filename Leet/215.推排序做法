@@ -4,7 +4,6 @@ public:
         priority_queue<int, vector<int>, less<int> >qt;//大顶堆
         for(int i=0;i<nums.size();i++){
             qt.push(nums[i]);
-            
             if(i>nums.size()-k){
                 qt.pop();
             }
@@ -13,3 +12,44 @@ public:
         return qt.top();
     }
 };
+
+#include <iostream>
+#include<vector>
+#include<queue>
+using namespace std;
+class Solution{
+    public:
+    int topk(vector<int>arr,int k){
+        priority_queue<int,vector<int>,greater<int> >qt;
+        for(auto x:arr){
+            if(int(qt.size())<k){
+                qt.push(x);
+            }else{
+                if(qt.top()<x){
+                    qt.pop();
+                   
+                    qt.push(x);
+                }
+            }
+            
+            
+        }
+        cout<<qt.top()<<endl;
+        return qt.top();
+        
+        
+        
+    }
+};
+int main() {
+    int a;
+    cin >> a;
+    int b;
+    vector<int>vt(a,0);
+    for(int i=0;i<a;i++){
+        cin>>b;
+        vt[i]=b;
+    }
+    Solution s;
+    cout << s.topk(vt,2);
+}
